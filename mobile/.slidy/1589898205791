@@ -1,0 +1,4 @@
+lib/app/components/food_list/food_list_widget.dart
+test/app/components/food_list/food_list_widget_test.dart
+lib/app/components/food_list/food_list_bloc.dart
+test/app/components/food_list/food_list_bloc_test.dart
