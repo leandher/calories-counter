@@ -7,22 +7,30 @@ class FoodListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView.builder(
-      itemCount: foods.length,
-      itemBuilder: (BuildContext context, int index) {
-        var food = foods[index];
-        var calories = double.parse(food.calories).toInt();
-        var portionAmount = double.parse(food.portionAmount).toInt();
-        var portionDisplayName = food.portionDisplayName;
+    return foods.isEmpty
+        ? Container(
+            alignment: Alignment.topCenter,
+            child: Text(
+              'No foods found!',
+              style: TextStyle(fontSize: 20),
+            ))
+        : ListView.builder(
+            itemCount: foods.length,
+            itemBuilder: (BuildContext context, int index) {
+              var food = foods[index];
+              var calories = double.parse(food.calories).toInt();
+              var portionAmount = double.parse(food.portionAmount).toInt();
+              var portionDisplayName = food.portionDisplayName;
 
-        return Card(
-        child: ListTile(
-          title: Text(food.displayName),
-          subtitle: Text('$calories calories | Serving size: $portionAmount $portionDisplayName'),
-        ),
-        borderOnForeground: true,
-      );
-      },
-    );
+              return Card(
+                child: ListTile(
+                  title: Text(food.displayName),
+                  subtitle: Text(
+                      '$calories calories | Serving size: $portionAmount $portionDisplayName'),
+                ),
+                borderOnForeground: true,
+              );
+            },
+          );
   }
 }

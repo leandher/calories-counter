@@ -42,6 +42,11 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void clear() {
+    filter.clear();
+    bloc.clearFoods();
+  }
+
   String validateSearchTerm(String searchTerm) {
     if (searchTerm.isEmpty) return 'This field must be filled';
 
@@ -73,7 +78,6 @@ class _HomePageState extends State<HomePage> {
                 var total = snapshot.data.total;
                 return Column(
                   children: <Widget>[
-                    // Padding(padding: EdgeInsets.only(top: 10),),
                     Expanded(
                         flex: 1,
                         child: TextFormField(
@@ -87,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                                 icon: Icon(
                                   Icons.clear,
                                 ),
-                                onPressed: () => filter.clear(),
+                                onPressed: clear,
                               ),
                               suffixIcon: CicleButton(
                                 onTap: onSearch,

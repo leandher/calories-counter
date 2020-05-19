@@ -23,6 +23,10 @@ class HomeBloc extends BlocBase {
     }
   }
 
+  void clearFoods() {
+    responseIn.add(new ResponseFood(page: 0, total: 0, data: []));
+  }
+
   @override
   void dispose() {
     listFood.close();
