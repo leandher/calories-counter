@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "types": [
+      "jest",
+      "node",
+      "reflect-metadata"
+    ],
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+  },
+}
