@@ -7,13 +7,14 @@ class HomeRepository {
 
   HomeRepository(this._client);
 
-  Future<ResponseFood> getFoods(String keyword, int page) async {
+  Future<ResponseFood> getFoods(String keyword, int page, int rows) async {
     try {
       var uri = Uri(
         path: '/foods',
         queryParameters: {
           'keyword': keyword,
           'offset': page.toString(),
+          'rows': rows.toString(),
         }
       );
       var response = await _client.dio.getUri(uri);

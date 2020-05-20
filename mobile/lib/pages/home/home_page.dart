@@ -16,13 +16,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var bloc = HomeModule.to.getBloc<HomeBloc>();
   String _searchText = "";
+  int _page = 0;
+  int _total = 0;
   bool _isTextEmpty = false;
-  final int _page = 0;
+  bool _hasMoreItems = false;
   static TextEditingController filter = new TextEditingController();
+  ScrollController scrollController = new ScrollController();
 
   @override
   void initState() {
-    bloc.getFoods(_searchText, _page);
+    bloc.getFoods(_searchText, _page, 25);
     addListener();
     super.initState();
   }
@@ -34,11 +37,21 @@ class _HomePageState extends State<HomePage> {
         _isTextEmpty = filter.text.isEmpty;
       });
     });
+
+    scrollController.addListener(() {
+      if (scrollController.position.extentAfter < 50 && _hasMoreItems) {
+        print('load all');
+        setState(() {
+          _hasMoreItems = false;
+        });
+        bloc.getFoods(this._searchText, this._page, this._total);
+      }
+    });
   }
 
   void onSearch() {
     if (!_isTextEmpty) {
-      bloc.getFoods(_searchText, _page);
+      bloc.getFoods(_searchText, _page, 25);
     }
   }
 
@@ -53,11 +66,19 @@ class _HomePageState extends State<HomePage> {
     return null;
   }
 
+  void saveTotal(int total, bool hasMoreItems) {
+    _total = total;
+    _hasMoreItems = hasMoreItems;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title, style: TextStyle(color: Theme.of(context).primaryColorDark),),
+        title: Text(
+          widget.title,
+          style: TextStyle(color: Theme.of(context).primaryColorDark),
+        ),
         backgroundColor: Colors.white,
       ),
       body: Container(
@@ -76,6 +97,9 @@ class _HomePageState extends State<HomePage> {
               }
               if (snapshot.hasData) {
                 var total = snapshot.data.total;
+                var foods = snapshot.data.data;
+                saveTotal(total, total > foods.length);
+
                 return Column(
                   children: <Widget>[
                     Expanded(
@@ -108,10 +132,12 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ))),
                     Expanded(
-                        flex: 8,
-                        child: FoodListWidget(
-                          foods: snapshot.data.data,
-                        ))
+                      flex: 7,
+                      child: FoodListWidget(
+                        foods: foods,
+                        controller: scrollController,
+                      ),
+                    ),
                   ],
                 );
               } else

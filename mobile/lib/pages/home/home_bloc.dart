@@ -14,9 +14,9 @@ class HomeBloc extends BlocBase {
 
   ValueStream<ResponseFood> get responseOut => listFood.stream;
 
-  void getFoods(String keyword, int page) async {
+  void getFoods(String keyword, int page, int rows) async {
     try {
-      var res = await repo.getFoods(keyword, page);
+      var res = await repo.getFoods(keyword, page, rows);
       responseIn.add(res);
     } catch (e) {
       listFood.addError(e);

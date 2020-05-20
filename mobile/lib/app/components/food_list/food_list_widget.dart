@@ -3,7 +3,9 @@ import 'package:mobile/models/food_model.dart';
 
 class FoodListWidget extends StatelessWidget {
   final List<FoodModel> foods;
-  FoodListWidget({Key key, this.foods}) : super(key: key);
+  final ScrollController controller;
+
+  FoodListWidget({Key key, this.foods, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +15,11 @@ class FoodListWidget extends StatelessWidget {
             child: Text(
               'No foods found!',
               style: TextStyle(fontSize: 20),
-            ))
+            ),
+          )
         : ListView.builder(
             itemCount: foods.length,
+            controller: controller,
             itemBuilder: (BuildContext context, int index) {
               var food = foods[index];
               var calories = double.parse(food.calories).toInt();
