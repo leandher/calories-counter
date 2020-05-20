@@ -11,18 +11,18 @@ Calorie Counter also provides you, the developer, with experience in transformin
 # **User Stories**
 
 - [x]  Developer will create a JSON file containing the food items to be searched. This will be loaded when the app is started.
-- [ ]  User can see an panel containing a food description input text box, a ‘Search’ button, and a ‘Clear’ button.
-- [ ]  User can enter search terms into the food description input text box.
-- [ ]  User can click on the ‘Search’ button to search for the matching food.
-- [ ]  User can see and warning message if no search terms were entered.
-- [ ]  User can see a warning message if no matches were found.
-- [ ]  User can see a list of the matching food items, portion sizes, and calories in a scrollable results panel that is limited to 25 entries.
-- [ ]  User can click on the ‘Clear’ button to clear the search terms and results list.
+- [x]  User can see an panel containing a food description input text box, a ‘Search’ button, and a ‘Clear’ button.
+- [x]  User can enter search terms into the food description input text box.
+- [x]  User can click on the ‘Search’ button to search for the matching food.
+- [x]  User can see and warning message if no search terms were entered.
+- [x]  User can see a warning message if no matches were found.
+- [x]  User can see a list of the matching food items, portion sizes, and calories in a scrollable results panel that is limited to 25 entries.
+- [x]  User can click on the ‘Clear’ button to clear the search terms and results list.
 
 # **Bonus features**
 
-- [ ]  User can see the count of the number of matching food items adjacent to the results list.
-- [ ]  User can see more than 25 entries from a search by clicking a Down icon button to add more matching food items to the search results list.
+- [x]  User can see the count of the number of matching food items adjacent to the results list.
+- [x]  User can see more than 25 entries from a search by clicking a Down icon button to add more matching food items to the search results list.
 - [x]  Developer will implement load the MyPyramid data into a database or a data structure other than an array for faster searching.
 
 # **Useful links and resources**
